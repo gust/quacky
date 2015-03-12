@@ -24,7 +24,7 @@ describe Quacky::DuckTypeVerifier, '#verify!' do
       end
 
       it "should raise a Quacky::DuckTypeVerificationFailure" do
-        expect { verifier.verify! non_conforming_object }.to raise_exception Quacky::DuckTypeVerificationFailure
+        expect { verifier.verify! non_conforming_object }.to raise_error Quacky::DuckTypeVerificationFailure
       end
     end
 
@@ -36,14 +36,14 @@ describe Quacky::DuckTypeVerifier, '#verify!' do
       end
 
       it "should raise a Quacky::DuckTypeVerificationFailure" do
-        expect { verifier.verify! non_conforming_object }.to raise_exception Quacky::DuckTypeVerificationFailure, "definitions of method `quack` differ in parameters accepted."
+        expect { verifier.verify! non_conforming_object }.to raise_error Quacky::DuckTypeVerificationFailure, "definitions of method `quack` differ in parameters accepted."
       end
     end
   end
 
   context "given a conforming object" do
     it "should return true" do
-      expect { verifier.verify! conforming_object }.not_to raise_exception Quacky::DuckTypeVerificationFailure
+      expect { verifier.verify! conforming_object }.not_to raise_error
     end
   end
 
@@ -54,7 +54,7 @@ describe Quacky::DuckTypeVerifier, '#verify!' do
       end
 
       it "should return true" do
-        expect { verifier.verify! conforming_object }.not_to raise_exception Quacky::DuckTypeVerificationFailure
+        expect { verifier.verify! conforming_object }.not_to raise_error
       end
     end
 
@@ -66,7 +66,7 @@ describe Quacky::DuckTypeVerifier, '#verify!' do
       end
 
       it "raises a Quacky::DuckTypeVerificationFailure" do
-        expect { verifier.verify! non_conforming_object }.to raise_exception Quacky::DuckTypeVerificationFailure, "object does not respond to `waddle`"
+        expect { verifier.verify! non_conforming_object }.to raise_error Quacky::DuckTypeVerificationFailure, "object does not respond to `waddle`"
       end
     end
   end
@@ -77,7 +77,7 @@ describe Quacky::DuckTypeVerifier, '#verify!' do
     end
 
     it "should return true" do
-      expect { verifier.verify! conforming_object }.not_to raise_exception Quacky::DuckTypeVerificationFailure
+      expect { verifier.verify! conforming_object }.not_to raise_error
     end
   end
 
@@ -91,11 +91,11 @@ describe Quacky::DuckTypeVerifier, '#verify!' do
     end
 
     it "should not raise a DuckTypeVerificationError" do
-      expect { verifier.verify! conforming_object }.not_to raise_exception Quacky::DuckTypeVerificationFailure
+      expect { verifier.verify! conforming_object }.not_to raise_error
     end
 
     it "should not raise a NameError" do
-      expect { verifier.verify! conforming_object }.not_to raise_exception NameError
+      expect { verifier.verify! conforming_object }.not_to raise_error
     end
   end
 end
